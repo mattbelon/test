@@ -3,7 +3,7 @@ import React from 'react';
 function FullCard({city, country, num}){
     return(
         <div className="card">
-        <div className="card-header">
+        <div className="card-header" >
     Profile
   </div>
         <ul className="list-group list-group-flush">

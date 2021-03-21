@@ -1,0 +1,10 @@
+npx create-react-app test
+yarn add react-booostrap
+yarn add --dev jest
+yarn add regenerator-runtime --dev
+npm i node-fetch 
+
+Observación: agregue una llamada al css desde el cdn de bootstrap por 2 motivos:
+1) Generaba incompatibilidad la llamada cuando ejecutaba jest, recomendaban bajar a la version 3
+2) Con la llamada desde el html lei que generaba una version más ligera y me convencio
+

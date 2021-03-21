@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'
-import {Button} from 'react-bootstrap'
-import Header from './components/Header.js'
-import FullCard from './components/FullCard.js'
+import {Button} from 'react-bootstrap';
+import Header from './components/Header.js';
+import FullCard from './components/FullCard.js';
+//import 'bootstrap/dist/css/bootstrap.min.css';
+//require('bootstrap/dist/css/bootstrap.min.css');
 
-function App() {
+
+const App = () => {
   const [toggle, setToggled] = useState(false)
   const [name, saveName] = useState("");
   const [lastName, saveLastname] = useState("");
@@ -16,9 +18,13 @@ function App() {
   const [profiles, setProfiles] = useState([]);
 
   const queryApi = async () =>{
+    const fetch = require("node-fetch");
+
     const url =`https://randomuser.me/api/`;
+    try{
     const respuesta = await fetch(url);
     const resultado = await respuesta.json();
+    
     saveName(resultado.results[0].name.first)
     saveLastname(resultado.results[0].name.last)
     saveNum(resultado.results[0].cell)
@@ -26,11 +32,15 @@ function App() {
     saveEmail(resultado.results[0].email)
     saveCity(resultado.results[0].location.city)
     saveCountry(resultado.results[0].location.country)
+  } catch (err) {
+    console.error(err);
+  }
   }
   
   useEffect( () =>{
     queryApi()
   }, []);
+  
   const extra = toggle === false ? "": <FullCard city={city} country={country} num={num} />
   const extraSave = toggle === false ? "": <Button onClick={ () => saveProfiles()}>Save</Button> 
 
@@ -41,24 +51,24 @@ function App() {
 
   function deleteItem(index){
     var newList = profiles;
-    var tem = newList.splice(index, 1);
-    saveProfiles(tem)
+    var temp = newList.filter((_, i) => i !== index)
+    setProfiles(temp)
 //    const data =newList.splice(index, 1);
   //  saveProfiles(...data);
     console.log("index selected" + index)
   }
   return (
     <div className="container">
-      <Header titulo="User manager"></Header>
+      <Header data-testid="headTitle" titulo="User manager"></Header>
       <div className="row">
           <div className="col align-items-center">
-          <Button onClick={queryApi}>New user</Button>
+          <Button onClick={queryApi} data-testid="btnAdd">New user</Button>
           </div>
       </div>
       
       <div className="row">
         <div className="col-md">
-              <div className="card" style={{ width: "18rem"}}>
+              <div className="card" style={{ width: "18rem"}} data-testid="profileCard">
                 <img src={pic} style={{  width: "100%"}} />
 
                   <div className="card-body">

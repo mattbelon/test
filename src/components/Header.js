@@ -4,8 +4,8 @@ function Header({titulo}){
     return(
         <nav>
             <div className="navbar navbar-light bg-light">
-        <h2>
-          User manager
+        <h2 data-testid="title">
+            Welcome to {titulo}         
           </h2>
           
             </div>
