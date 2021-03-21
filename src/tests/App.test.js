@@ -11,7 +11,6 @@ test('Comprobaciones del Boton ', () => {
   const btnAdd = screen.getByTestId('btnAdd')
   
   expect( screen.getByTestId('btnAdd').textContent).toBe('New user');
-
   fireEvent.click(btnAdd)
 });
 
@@ -21,6 +20,7 @@ test('toggle Definido', () => {
 
 test('Verificacion del DOM',() => {
   render(<App />)
-  const card = screen.findAllByTestId('profileCard')
-  expect(card).toMatchSnapshot()
-});
+  
+  expect( screen.getByTestId('profileBtn').textContent).toBe('More info');
+
+})

@@ -19,7 +19,6 @@ const App = () => {
 
   const queryApi = async () =>{
     const fetch = require("node-fetch");
-
     const url =`https://randomuser.me/api/`;
     try{
     const respuesta = await fetch(url);
@@ -76,7 +75,7 @@ const App = () => {
                   <p className="title">{email}</p>
                   </div>
                   {
-                  <Button onClick={ () => setToggled(!toggle)}>
+                  <Button data-testid="profileBtn" onClick={ () => setToggled(!toggle)}>
                     {toggle === false ? "More info" : "Less Info"}
                     </Button>
                   }
